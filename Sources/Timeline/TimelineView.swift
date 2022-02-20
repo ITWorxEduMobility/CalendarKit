@@ -68,13 +68,13 @@ public final class TimelineView: UIView {
     let allDayView = AllDayView(frame: CGRect.zero)
     
     allDayView.translatesAutoresizingMaskIntoConstraints = false
-    addSubview(allDayView)
-
-    self.allDayViewTopConstraint = allDayView.topAnchor.constraint(equalTo: topAnchor, constant: 0)
-    self.allDayViewTopConstraint?.isActive = true
-
-    allDayView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0).isActive = true
-    allDayView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0).isActive = true
+//    addSubview(allDayView)
+//
+//    self.allDayViewTopConstraint = allDayView.topAnchor.constraint(equalTo: topAnchor, constant: 0)
+//    self.allDayViewTopConstraint?.isActive = true
+//
+//    allDayView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0).isActive = true
+//    allDayView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0).isActive = true
 
     return allDayView
   }()
