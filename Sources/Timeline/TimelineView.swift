@@ -9,7 +9,8 @@ public protocol TimelineViewDelegate: AnyObject {
 
 public final class TimelineView: UIView {
   public weak var delegate: TimelineViewDelegate?
-
+  public var isRTL: Bool = false
+    
   public var date = Date() {
     didSet {
       setNeedsLayout()
@@ -295,7 +296,7 @@ public final class TimelineView: UIView {
     let offset = 0.5 - center
     
     for (hour, time) in times.enumerated() {
-        let rightToLeft = UIView.userInterfaceLayoutDirection(for: semanticContentAttribute) == .rightToLeft
+        let rightToLeft = isRTL//UIView.userInterfaceLayoutDirection(for: semanticContentAttribute) == .rightToLeft
         
         let hourFloat = CGFloat(hour)
         let context = UIGraphicsGetCurrentContext()
@@ -351,7 +352,7 @@ public final class TimelineView: UIView {
         if hour == accentedHour {
             
             var x: CGFloat
-            if UIView.userInterfaceLayoutDirection(for: semanticContentAttribute) == .rightToLeft {
+            if isRTL {//UIView.userInterfaceLayoutDirection(for: semanticContentAttribute) == .rightToLeft {
                 x = bounds.width - (style.leadingInset + 7)
             } else {
                 x = 2
@@ -400,7 +401,7 @@ public final class TimelineView: UIView {
       eventView.frame = attributes.frame
         
       var x: CGFloat
-      if UIView.userInterfaceLayoutDirection(for: semanticContentAttribute) == .rightToLeft {
+        if isRTL {//UIView.userInterfaceLayoutDirection(for: semanticContentAttribute) == .rightToLeft {
         x = bounds.width - attributes.frame.minX - attributes.frame.width
       } else {
         x = attributes.frame.minX
