@@ -105,7 +105,7 @@ open class EventView: UIView {
     context.setStrokeColor(color.cgColor)
     context.setLineWidth(3)
     context.translateBy(x: 0, y: 0.5)
-    let leftToRight = UIView.userInterfaceLayoutDirection(for: semanticContentAttribute) == .leftToRight
+      let leftToRight = CalendarSemanticDirectionManager.shared.calendarLayoutDirection == .leftToRight//UIView.userInterfaceLayoutDirection(for: semanticContentAttribute) == .leftToRight
     let x: CGFloat = leftToRight ? 0 : frame.width - 1  // 1 is the line width
     let y: CGFloat = 0
     context.beginPath()
@@ -120,7 +120,8 @@ open class EventView: UIView {
   override open func layoutSubviews() {
     super.layoutSubviews()
     textView.frame = {
-        if UIView.userInterfaceLayoutDirection(for: semanticContentAttribute) == .rightToLeft {
+//        if UIView.userInterfaceLayoutDirection(for: semanticContentAttribute) == .rightToLeft {
+        if CalendarSemanticDirectionManager.shared.calendarLayoutDirection == .rightToLeft {
             return CGRect(x: bounds.minX, y: bounds.minY, width: bounds.width - 3, height: bounds.height)
         } else {
             return CGRect(x: bounds.minX + 3, y: bounds.minY, width: bounds.width - 3, height: bounds.height)

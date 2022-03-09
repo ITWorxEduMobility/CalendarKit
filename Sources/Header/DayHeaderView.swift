@@ -60,7 +60,7 @@ public final class DayHeaderView: UIView, DaySelectorDelegate, DayViewStateUpdat
     vc.selectedDate = selectedDate
     currentWeekdayIndex = vc.selectedIndex
     
-    let leftToRight = UIView.userInterfaceLayoutDirection(for: semanticContentAttribute) == .leftToRight
+      let leftToRight = CalendarSemanticDirectionManager.shared.calendarLayoutDirection == .leftToRight//UIView.userInterfaceLayoutDirection(for: semanticContentAttribute) == .leftToRight
     let direction: UIPageViewController.NavigationDirection = leftToRight ? .forward : .reverse
     
     pagingViewController.setViewControllers([vc], direction: direction, animated: false, completion: nil)
@@ -140,7 +140,7 @@ public final class DayHeaderView: UIView, DaySelectorDelegate, DayViewStateUpdat
 
     let new = makeSelectorController(startDate: newStartDate)
     
-    let leftToRight = UIView.userInterfaceLayoutDirection(for: semanticContentAttribute) == .leftToRight
+      let leftToRight = CalendarSemanticDirectionManager.shared.calendarLayoutDirection == .leftToRight//UIView.userInterfaceLayoutDirection(for: semanticContentAttribute) == .leftToRight
 
     if daysFrom < 0 {
       currentWeekdayIndex = abs(daysInWeek + daysFrom % daysInWeek) % daysInWeek

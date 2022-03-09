@@ -9,7 +9,6 @@ public protocol TimelineViewDelegate: AnyObject {
 
 public final class TimelineView: UIView {
   public weak var delegate: TimelineViewDelegate?
-  public var isRTL: Bool = false
     
   public var date = Date() {
     didSet {
@@ -296,7 +295,7 @@ public final class TimelineView: UIView {
     let offset = 0.5 - center
     
     for (hour, time) in times.enumerated() {
-        let rightToLeft = isRTL//UIView.userInterfaceLayoutDirection(for: semanticContentAttribute) == .rightToLeft
+        let rightToLeft = CalendarSemanticDirectionManager.shared.calendarLayoutDirection == .rightToLeft//UIView.userInterfaceLayoutDirection(for: semanticContentAttribute) == .rightToLeft
         
         let hourFloat = CGFloat(hour)
         let context = UIGraphicsGetCurrentContext()
@@ -352,7 +351,8 @@ public final class TimelineView: UIView {
         if hour == accentedHour {
             
             var x: CGFloat
-            if isRTL {//UIView.userInterfaceLayoutDirection(for: semanticContentAttribute) == .rightToLeft {
+//            if UIView.userInterfaceLayoutDirection(for: semanticContentAttribute) == .rightToLeft {
+            if CalendarSemanticDirectionManager.shared.calendarLayoutDirection == .rightToLeft {
                 x = bounds.width - (style.leadingInset + 7)
             } else {
                 x = 2
@@ -382,7 +382,7 @@ public final class TimelineView: UIView {
     if !isToday {
       nowLine.alpha = 0
     } else {
-		bringSubviewToFront(nowLine)
+        bringSubviewToFront(nowLine)
       nowLine.alpha = 1
       let size = CGSize(width: bounds.size.width, height: 20)
       let rect = CGRect(origin: CGPoint.zero, size: size)
@@ -401,7 +401,8 @@ public final class TimelineView: UIView {
       eventView.frame = attributes.frame
         
       var x: CGFloat
-        if isRTL {//UIView.userInterfaceLayoutDirection(for: semanticContentAttribute) == .rightToLeft {
+//        if UIView.userInterfaceLayoutDirection(for: semanticContentAttribute) == .rightToLeft {
+        if CalendarSemanticDirectionManager.shared.calendarLayoutDirection == .rightToLeft {
         x = bounds.width - attributes.frame.minX - attributes.frame.width
       } else {
         x = attributes.frame.minX

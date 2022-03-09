@@ -45,7 +45,7 @@ public final class DaySymbolsView: UIView {
 
     weekDays.shift(calendar.firstWeekday - 1)
     
-    let rightToLeft = UIView.userInterfaceLayoutDirection(for: semanticContentAttribute) == .rightToLeft
+      let rightToLeft = CalendarSemanticDirectionManager.shared.calendarLayoutDirection == .rightToLeft//UIView.userInterfaceLayoutDirection(for: semanticContentAttribute) == .rightToLeft
     if rightToLeft { weekDays.reverse() }
 
     for (index, label) in labels.enumerated() {

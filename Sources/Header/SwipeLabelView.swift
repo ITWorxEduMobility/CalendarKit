@@ -85,7 +85,7 @@ public final class SwipeLabelView: UIView, DayViewStateUpdating {
     secondLabel.frame = bounds
     secondLabel.frame.origin.x -= CGFloat(shiftRatio * screenWidth * 3) * multiplier
 
-    UIView.animate(withDuration: 0.3, animations: { 
+    UIView.animate(withDuration: 0.3, animations: {
       self.secondLabel.frame = self.bounds
       self.firstLabel.frame.origin.x += CGFloat(shiftRatio * screenWidth) * multiplier
       self.secondLabel.alpha = 1
@@ -110,7 +110,7 @@ public final class SwipeLabelView: UIView, DayViewStateUpdating {
     
     var direction: AnimationDirection = newDate > oldDate ? .Forward : .Backward
     
-    let rightToLeft = UIView.userInterfaceLayoutDirection(for: semanticContentAttribute) == .rightToLeft
+      let rightToLeft = CalendarSemanticDirectionManager.shared.calendarLayoutDirection == .rightToLeft//UIView.userInterfaceLayoutDirection(for: semanticContentAttribute) == .rightToLeft
     if rightToLeft { direction.flip() }
     
     animate(direction)
